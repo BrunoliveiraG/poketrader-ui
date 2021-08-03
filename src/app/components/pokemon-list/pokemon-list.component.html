@@ -1,0 +1,117 @@
+<h2>
+    <p-dropdown
+        [options]="pokemons" 
+        [(ngModel)]="selectedPokemonName1" 
+        optionLabel="name" 
+        optionValue="name" 
+        [filter]=true placeholder="Select Pokemon" 
+        [maxlength]=200 filterPlaceholder="Search" 
+        [showTransitionOptions]="'200ms'" 
+        [hideTransitionOptions]="'200ms'" 
+        emptyFilterMessage="Not Found">
+    </p-dropdown>
+    <button pButton type="button" 
+        icon="pi pi-plus" 
+        class="p-button-raised p-button-rounded p-button-text" 
+        (click)="addPokemonToTrade1(selectedPokemonName1)"
+        style="left:5px;">
+    </button>
+    <br>
+    <p-table [value]="pokemonToTrade1" [autoLayout]="true">
+        <ng-template pTemplate="caption">
+            Pokemons in Trade
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Experience</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pokemon>
+            <tr>
+                <td>{{ pokemon.name }}</td>
+                <td>{{ pokemon.experience }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+   
+</h2>
+
+<h3>
+    <p-dropdown
+        [options]="pokemons" 
+        [(ngModel)]="selectedPokemonName2" 
+        optionLabel="name" 
+        optionValue="name" 
+        [filter]=true placeholder="Select Pokemon" 
+        [maxlength]=200 filterPlaceholder="Search" 
+        [showTransitionOptions]="'200ms'" 
+        [hideTransitionOptions]="'200ms'" 
+        emptyFilterMessage="Not Found">
+    </p-dropdown>
+    <button pButton type="button" 
+        icon="pi pi-plus" 
+        class="p-button-raised p-button-rounded p-button-text" 
+        (click)="addPokemonToTrade2(selectedPokemonName2)"
+        style="left:5px;">
+    </button>
+    <p-table [value]="pokemonToTrade2" [autoLayout]="true">
+        <ng-template pTemplate="caption">
+            Pokemons in Trade
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Experience</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pokemon>
+            <tr>
+                <td>{{ pokemon.name }}</td>
+                <td>{{ pokemon.experience }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    
+</h3>
+
+<h4>
+    <button pButton type="button" 
+        icon="pi pi-trash" 
+        class="p-button-raised p-button-rounded p-button-text" 
+        (click)="clearTradeList()"
+        style="left:5px;">
+    </button>
+
+    <button pButton type="button" 
+        icon="pi pi-send" 
+        class="p-button-raised p-button-rounded p-button-text" 
+        (click)="saveTradeList()"
+        style="left:5px;">
+    </button>
+    <p-toast></p-toast>
+</h4>
+
+
+<h5>
+    <p-table [value]="resultList" [autoLayout]="true">
+        <ng-template pTemplate="caption">
+            List of saved Trades
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Trade id</th>
+                <th>Experience Difference</th>
+                <th>Verdict</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-result>
+            <tr>
+                <td>{{ result.id }}</td>
+                <td>{{ result.expDifference }}</td>
+                <td>{{ result.verdict }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</h5>
+
