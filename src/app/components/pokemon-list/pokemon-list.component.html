@@ -13,7 +13,7 @@
     <button pButton type="button" 
         icon="pi pi-plus" 
         class="p-button-raised p-button-rounded p-button-text" 
-        (click)="addPokemonToTrade1(selectedPokemonName1)"
+        (click)="addPokemonToTrade(selectedPokemonName1, 1)"
         style="left:5px;">
     </button>
     <br>
@@ -52,7 +52,7 @@
     <button pButton type="button" 
         icon="pi pi-plus" 
         class="p-button-raised p-button-rounded p-button-text" 
-        (click)="addPokemonToTrade2(selectedPokemonName2)"
+        (click)="addPokemonToTrade(selectedPokemonName2, 2)"
         style="left:5px;">
     </button>
     <p-table [value]="pokemonToTrade2" [autoLayout]="true">

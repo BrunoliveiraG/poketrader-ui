@@ -42,19 +42,18 @@ export class PokemonListComponent implements OnInit {
   }
 
 
-  addPokemonToTrade1(pokemonName: string){
+  addPokemonToTrade(pokemonName: string, dropDown: number){
     var pokemon = new Pokemon();
     if(pokemonName){
-      pokemon =  this.searchPokemon(pokemonName);
-      this.pokemonToTrade1.push(pokemon);
-    }
-  }
-
-  addPokemonToTrade2(pokemonName: string){
-    var pokemon = new Pokemon();
-    if(pokemonName){
-      pokemon =  this.searchPokemon(pokemonName);
-      this.pokemonToTrade2.push(pokemon);
+      if(dropDown == 1){
+        pokemon =  this.searchPokemon(pokemonName);
+        this.pokemonToTrade1.push(pokemon);
+      }
+      else if(dropDown == 2){
+        pokemon =  this.searchPokemon(pokemonName);
+        this.pokemonToTrade2.push(pokemon);
+      }
+      
     }
   }
 
