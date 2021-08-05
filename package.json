@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "heroku-postbuild": "ng build --prod && npm install -g http-server-spa",
-    "start": "http-server-spa dist/poketraderbx index.html $PORT",
+    "start": "http-server-spa dist/poketraderblue index.html $PORT",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
