@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Pokemon } from '../common/pokemon';
 import { map } from 'rxjs/operators';
 import { Trade } from '../common/trade';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { Trade } from '../common/trade';
 export class PokemonService {
 
   private basePokemonUrl = 'https://pokeapi.co/api/v2/pokemon';
-  private baseLocalUrl = 'http://localhost:8080/trades'
+  private baseLocalUrl = environment.baseUrl;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,8 +21,8 @@ export class PokemonService {
     return this.httpClient.get<Pokemon[]>(`${this.basePokemonUrl}/?limit=2000`);
   }
 
-  getPokemon(pokemonNameOrId: any){
-    return this.httpClient.get<Pokemon>(`${this.basePokemonUrl}/${pokemonNameOrId}`);
+  getPokemon(pokemonName: string){
+    return this.httpClient.get<Pokemon>(`${this.basePokemonUrl}/${pokemonName}`);
   }
 
   saveTradeList(tradeList1: Trade[]) {
