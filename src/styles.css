@@ -3,30 +3,4 @@
     min-width: 16em;
    }
 
-   h1 {
-    position: absolute;
-    left: 810px;
-  }
-
-   h2 {
-    position: absolute;
-    left: 300px;
-    top: 150px;
-  }
-  h3 {
-    position: absolute;
-    left: 800px;
-    top: 150px;
-  }
-
-  h4 {
-    position: absolute;
-    left: 650px;
-    top: 250px;
-  }
-
-  h5 {
-    position: absolute;
-    left: 1300px;
-    top: 150px;
-  }
+   

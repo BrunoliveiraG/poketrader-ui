@@ -1,0 +1,45 @@
+.pokemonListComponentContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    font-family: "PokemonGb";
+}
+
+
+.buildTradeContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 96%;
+    max-width: 800px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.pokemonListContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.pokemonListHeaderContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.saveTradeListButtonContainer{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.tradeResultsContainer{
+    display: flex;
+    justify-content: center;
+    width: 96%;
+    max-width: 800px;
+}
+

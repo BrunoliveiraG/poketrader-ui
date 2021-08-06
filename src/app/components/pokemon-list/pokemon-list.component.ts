@@ -21,6 +21,10 @@ export class PokemonListComponent implements OnInit {
   pokemonToTrade2: Pokemon[] = [];
   listName: string;
   resultList: Result[] = [];
+  pokeListTest1: any[];
+  pokeListTest2: any[];
+  pokeListIndex1: number = 0;
+  pokeListIndex2: number = 0;
 
 
   constructor(
@@ -29,8 +33,25 @@ export class PokemonListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.pokeListTest1 = [
+      {index: "1", name: ""},
+      {index: "2", name: ""},
+      {index: "3", name: ""},
+      {index: "4", name: ""},
+      {index: "5", name: ""},
+      {index: "6", name: ""}
+  ];
+    this.pokeListTest2 = [
+      {index: "1", name: ""},
+      {index: "2", name: ""},
+      {index: "3", name: ""},
+      {index: "4", name: ""},
+      {index: "5", name: ""},
+      {index: "6", name: ""}
+  ];
     this.listPokemons();
     this.listTrades();
+
   }
 
   listPokemons(){
@@ -45,13 +66,16 @@ export class PokemonListComponent implements OnInit {
   addPokemonToTrade(pokemonName: string, dropDown: number){
     var pokemon = new Pokemon();
     if(pokemonName){
-      if(dropDown == 1){
-        pokemon =  this.searchPokemon(pokemonName);
+      pokemon =  this.searchPokemon(pokemonName);
+      if(dropDown == 1 && this.pokeListIndex1 < 6){
+        this.pokeListTest1[this.pokeListIndex1].name = pokemonName;
         this.pokemonToTrade1.push(pokemon);
+        this.pokeListIndex1 +=1;
       }
-      else if(dropDown == 2){
-        pokemon =  this.searchPokemon(pokemonName);
+      else if(dropDown == 2 && this.pokeListIndex2 < 6){
+        this.pokeListTest2[this.pokeListIndex2].name = pokemonName;
         this.pokemonToTrade2.push(pokemon);
+        this.pokeListIndex2 +=1;
       }
       
     }

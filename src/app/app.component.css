@@ -1,0 +1,16 @@
+
+.mainPageContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.pageTitleContainer{
+    display: flex;
+    justify-content: center;
+    font-family: "PocketMonk";
+}
+
+@font-face {
+    font-family: "PocketMonk";
+    src: local("PocketMonk"), url(../assets/fonts/PocketMonk-15ze.ttf) format("truetype");
+}
