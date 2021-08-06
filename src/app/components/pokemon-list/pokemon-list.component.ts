@@ -117,6 +117,8 @@ export class PokemonListComponent implements OnInit {
       this.clearTradeList();
       this.listTrades();
       this.clearPokeLists();
+      this.pokeListIndex1 = 0;
+      this.pokeListIndex2 = 0;
       this.messageService.add({
         severity: 'success',
         summary: 'Trade list added succesfully'
