@@ -74,6 +74,7 @@ export class PokemonListComponent implements OnInit {
       if(dropDown == 1 && this.pokeListIndex1 < 6){
         this.pokeListTest1[this.pokeListIndex1].name = pokemonName;
         this.pokemonToTrade1.push(pokemon);
+        console.log(this.pokemonToTrade1);
         this.pokeListIndex1 +=1;
       }
       else if(dropDown == 2 && this.pokeListIndex2 < 6){
@@ -82,6 +83,38 @@ export class PokemonListComponent implements OnInit {
         this.pokeListIndex2 +=1;
       }
       
+    }
+  }
+
+  buildTestListWithoutElement(dropDown: number, index: number){
+    index -=1;
+    if(dropDown == 1){
+      for (let i = index; i < 5; i++) {
+        this.pokeListTest1[i].name = this.pokeListTest1[i+1].name;
+      }
+      this.pokeListTest1[5].name = "";
+    }
+    else if(dropDown == 2){
+      for (let i = index; i < 5; i++) {
+        this.pokeListTest2[i].name = this.pokeListTest2[i+1].name;
+      }
+      this.pokeListTest2[5].name = "";
+    }
+    
+  }
+
+  removePokemonFromTrade(dropDown: number, pokemonName: string, index: number){
+    var pokemon = new Pokemon();
+    pokemon =  this.searchPokemon(pokemonName);
+    if(dropDown == 1){
+      this.pokemonToTrade1.splice(this.pokemonToTrade1.indexOf(pokemon), 1);
+      this.buildTestListWithoutElement(dropDown, index);
+      this.pokeListIndex1 -= 1;
+    }
+    else if(dropDown == 2){
+      this.pokemonToTrade2.splice(this.pokemonToTrade2.indexOf(pokemon), 1);
+      this.buildTestListWithoutElement(dropDown, index);
+      this.pokeListIndex2 -= 1;
     }
   }
 

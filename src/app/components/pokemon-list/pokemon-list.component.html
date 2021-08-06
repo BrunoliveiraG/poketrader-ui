@@ -32,12 +32,15 @@
                         <tr>
                             <th>Index</th>
                             <th>Name</th>
+                            <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-pokemon>
                         <tr>
                             <td>{{ pokemon.index }}</td>
                             <td>{{ pokemon.name }}</td>
+                            <div *ngIf="pokemon.name"><button pButton type="button" icon="pi pi-times" class="p-button-text" (click)="removePokemonFromTrade(1, pokemon.name, pokemon.index)"></button></div>
+                            
                         </tr>
                     </ng-template>
                 </p-table>
@@ -76,12 +79,15 @@
                         <tr>
                             <th>Index</th>
                             <th>Name</th>
+                            <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-pokemon>
                         <tr>
                             <td>{{ pokemon.index }}</td>
                             <td>{{ pokemon.name }}</td>
+                            <div *ngIf="pokemon.name"><button pButton type="button" icon="pi pi-times" class="p-button-text" (click)="removePokemonFromTrade(2, pokemon.name, pokemon.index)"></button></div>
+                            
                         </tr>
                     </ng-template>
                 </p-table>
