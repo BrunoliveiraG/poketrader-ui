@@ -33,6 +33,13 @@ export class PokemonListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.clearPokeLists();
+    this.listPokemons();
+    this.listTrades();
+
+  }
+
+  clearPokeLists(){
     this.pokeListTest1 = [
       {index: "1", name: ""},
       {index: "2", name: ""},
@@ -49,9 +56,6 @@ export class PokemonListComponent implements OnInit {
       {index: "5", name: ""},
       {index: "6", name: ""}
   ];
-    this.listPokemons();
-    this.listTrades();
-
   }
 
   listPokemons(){
@@ -112,6 +116,7 @@ export class PokemonListComponent implements OnInit {
     this.pokemonService.saveTradeList(tradeList).subscribe(() => {
       this.clearTradeList();
       this.listTrades();
+      this.clearPokeLists();
       this.messageService.add({
         severity: 'success',
         summary: 'Trade list added succesfully'
