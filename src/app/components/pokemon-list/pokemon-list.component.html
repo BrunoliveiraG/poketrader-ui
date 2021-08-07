@@ -24,7 +24,8 @@
             
     
             <div class="tradeListContainer">
-                <p-table class="pokemonTable" [value]="pokeListTest1" [autoLayout]="true">
+                <p-table class="pokemonTable" [value]="pokeListTest1" 
+                [autoLayout]="true" styleClass="p-datatable-responsive-demo">
                     <ng-template pTemplate="caption">
                         Pokemons in Trade
                     </ng-template>
@@ -39,7 +40,12 @@
                         <tr>
                             <td>{{ pokemon.index }}</td>
                             <td>{{ pokemon.name }}</td>
-                            <div *ngIf="pokemon.name"><button pButton type="button" icon="pi pi-times" class="p-button-text" (click)="removePokemonFromTrade(1, pokemon.name, pokemon.index)"></button></div>
+                            <td>
+                                <div *ngIf="pokemon.name"><button pButton 
+                                    type="button" icon="pi pi-times" class="p-button-text" 
+                                    (click)="removePokemonFromTrade(1, pokemon.name, pokemon.index)"></button>
+                                </div>
+                            </td>
                             
                         </tr>
                     </ng-template>
@@ -86,7 +92,13 @@
                         <tr>
                             <td>{{ pokemon.index }}</td>
                             <td>{{ pokemon.name }}</td>
-                            <div *ngIf="pokemon.name"><button pButton type="button" icon="pi pi-times" class="p-button-text" (click)="removePokemonFromTrade(2, pokemon.name, pokemon.index)"></button></div>
+                            <td>
+                                <div *ngIf="pokemon.name"><button pButton type="button" 
+                                    icon="pi pi-times" class="p-button-text" 
+                                    (click)="removePokemonFromTrade(2, pokemon.name, pokemon.index)"></button>
+                                </div>
+                            </td>
+                            
                             
                         </tr>
                     </ng-template>
@@ -110,7 +122,10 @@
     </div>  
     
     <div class="tradeResultsContainer">
-        <p-table class="resultTable" [value]="resultList" [scrollable]="true" sortField="id" [sortOrder]="-1" scrollHeight="200px" [autoLayout]="true" styleClass="p-datatable-sm p-datatable-gridlines">
+        <p-table class="resultTable" [value]="resultList" 
+        [scrollable]="true" sortField="id" [sortOrder]="-1" 
+        scrollHeight="200px" [autoLayout]="true" 
+        styleClass="p-datatable-sm p-datatable-gridlines">
             <ng-template pTemplate="caption">
                 List of saved Trades
             </ng-template>
