@@ -25,6 +25,7 @@ export class PokemonListComponent implements OnInit {
   pokeListTest2: any[];
   pokeListIndex1: number = 0;
   pokeListIndex2: number = 0;
+  trainerName: string;
 
 
   constructor(
@@ -135,16 +136,18 @@ export class PokemonListComponent implements OnInit {
     this.pokemonToTrade2.splice(0,this.pokemonToTrade2.length);
   }
 
-  saveTradeList(){
+  saveTradeList(userName: string){
     var tradeList: Trade[] = [];
 
     if( this.pokemonToTrade1 && this.pokemonToTrade2){
       var tradeLocal1 = new Trade();
       tradeLocal1.pokemonList = this.pokemonToTrade1;
+      tradeLocal1.userName = userName;
       tradeList.push(tradeLocal1);
       var tradeLocal2 = new Trade();
       tradeLocal2.pokemonList = this.pokemonToTrade2;
       tradeList.push(tradeLocal2);
+      
     }
     this.pokemonService.saveTradeList(tradeList).subscribe(() => {
       this.clearTradeList();

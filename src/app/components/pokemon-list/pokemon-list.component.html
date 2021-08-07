@@ -96,10 +96,14 @@
     </div>
     
     <div class= "saveTradeListButtonContainer">
+        <span class="p-float-label">
+            <input id="float-input" type="text" pInputText [(ngModel)]="trainerName"> 
+            <label for="float-input">Trainer</label>
+        </span>
         <button class="saveTradeListButton" pButton type="button" 
-            icon="pi pi-send" 
+            icon="pi pi-save" 
             class="p-button-raised p-button-rounded p-button-text" 
-            (click)="saveTradeList()"
+            (click)="saveTradeList(trainerName)"
             style="left:5px;">
         </button>
         <p-toast></p-toast>
@@ -112,14 +116,18 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Trade id</th>
+                    <th>Username</th>
+                    <th>Pokemons 1</th>
+                    <th>Pokemons 2</th>
                     <th>Experience Difference</th>
                     <th>Verdict</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-result>
                 <tr>
-                    <td>{{ result.id }}</td>
+                    <td>{{ result.userName }}</td>
+                    <td>{{ result.firstList }}</td>
+                    <td>{{ result.secondList }}</td>
                     <td>{{ result.expDifference }}</td>
                     <td>{{ result.verdict }}</td>
                 </tr>
