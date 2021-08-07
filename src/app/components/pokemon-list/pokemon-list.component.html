@@ -110,26 +110,22 @@
     </div>  
     
     <div class="tradeResultsContainer">
-        <p-table class="resultTable" [value]="resultList" [scrollable]="true" sortField="id" [sortOrder]="-1" scrollHeight="200px" [autoLayout]="true">
+        <p-table class="resultTable" [value]="resultList" [scrollable]="true" sortField="id" [sortOrder]="-1" scrollHeight="200px" [autoLayout]="true" styleClass="p-datatable-sm p-datatable-gridlines">
             <ng-template pTemplate="caption">
                 List of saved Trades
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th>Username</th>
-                    <th>Pokemons 1</th>
-                    <th>Pokemons 2</th>
-                    <th>Experience Difference</th>
-                    <th>Verdict</th>
+                    <th>Pokemons</th>
+                    <th>Difference & Verdict</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-result>
                 <tr>
                     <td>{{ result.userName }}</td>
-                    <td>{{ result.firstList }}</td>
-                    <td>{{ result.secondList }}</td>
-                    <td>{{ result.expDifference }}</td>
-                    <td>{{ result.verdict }}</td>
+                    <td>{{ result.firstList }} traded with {{ result.secondList }}</td>
+                    <td>{{ result.expDifference }} experience difference, that's a {{ result.verdict }}</td>
                 </tr>
             </ng-template>
         </p-table>

@@ -41,5 +41,6 @@
     justify-content: center;
     width: 96%;
     max-width: 800px;
+    word-wrap: break-word;
 }
 
