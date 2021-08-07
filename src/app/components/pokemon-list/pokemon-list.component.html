@@ -1,3 +1,4 @@
+<!-- <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"> -->
 <div class = "pokemonListComponentContainer">
     <div class= "buildTradeContainer">
         <div class="pokemonListContainer">
@@ -26,20 +27,23 @@
             <div class="tradeListContainer">
                 <p-table class="pokemonTable" [value]="pokeListTest1" 
                 [autoLayout]="true" styleClass="p-datatable-responsive-demo">
-                    <ng-template pTemplate="caption">
-                        Pokemons in Trade
-                    </ng-template>
                     <ng-template pTemplate="header">
-                        <tr>
-                            <th>Index</th>
+                        <tr class="pokemonListDescription">
                             <th>Name</th>
+                            <th>Exp</th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-pokemon>
                         <tr>
-                            <td>{{ pokemon.index }}</td>
                             <td>{{ pokemon.name }}</td>
+                            <td>{{ pokemon.baseExperience }}</td>
+                            <td>
+                                <div class="crop">
+                                    <img [src]="pokemon.url">
+                                </div>
+                            </td>
                             <td>
                                 <div *ngIf="pokemon.name"><button pButton 
                                     type="button" icon="pi pi-times" class="p-button-text" 
@@ -78,20 +82,23 @@
             
             <div class="tradeListContainer">
                 <p-table class="pokemonTable" [value]="pokeListTest2" [autoLayout]="true">
-                    <ng-template pTemplate="caption">
-                        Pokemons in Trade
-                    </ng-template>
                     <ng-template pTemplate="header">
-                        <tr>
-                            <th>Index</th>
+                        <tr class="pokemonListDescription">
                             <th>Name</th>
+                            <th>Exp</th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-pokemon>
                         <tr>
-                            <td>{{ pokemon.index }}</td>
                             <td>{{ pokemon.name }}</td>
+                            <td>{{ pokemon.baseExperience }}</td>
+                            <td>
+                                <div class="crop">
+                                    <img [src]="pokemon.url">
+                                </div>
+                            </td>
                             <td>
                                 <div *ngIf="pokemon.name"><button pButton type="button" 
                                     icon="pi pi-times" class="p-button-text" 
@@ -109,13 +116,13 @@
     
     <div class= "saveTradeListButtonContainer">
         <span class="p-float-label">
-            <input id="float-input" type="text" pInputText [(ngModel)]="trainerName"> 
+            <input id="float-input" type="text" pInputText [(ngModel)]="trainerName1"> 
             <label for="float-input">Trainer</label>
         </span>
         <button class="saveTradeListButton" pButton type="button" 
             icon="pi pi-save" 
             class="p-button-raised p-button-rounded p-button-text" 
-            (click)="saveTradeList(trainerName)"
+            (click)="saveTradeList(trainerName1)"
             style="left:5px;">
         </button>
         <p-toast></p-toast>
@@ -126,19 +133,21 @@
         [scrollable]="true" sortField="id" [sortOrder]="-1" 
         scrollHeight="200px" [autoLayout]="true" 
         styleClass="p-datatable-sm p-datatable-gridlines">
-            <ng-template pTemplate="caption">
-                List of saved Trades
-            </ng-template>
+        <ng-template pTemplate="caption" >
+            <div class="tradeHistoryCaption">
+                Trade History
+            </div>
+        </ng-template>
             <ng-template pTemplate="header">
-                <tr>
+                <tr class="resultDescription">
                     <th>Username</th>
                     <th>Pokemons</th>
                     <th>Difference & Verdict</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-result>
-                <tr>
-                    <td>{{ result.userName }}</td>
+                <tr >
+                    <td >{{ result.userName }}</td>
                     <td>{{ result.firstList }} traded with {{ result.secondList }}</td>
                     <td>{{ result.expDifference }} experience difference, that's a {{ result.verdict }}</td>
                 </tr>

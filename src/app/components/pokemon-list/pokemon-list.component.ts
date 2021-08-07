@@ -25,7 +25,8 @@ export class PokemonListComponent implements OnInit {
   pokeListTest2: any[];
   pokeListIndex1: number = 0;
   pokeListIndex2: number = 0;
-  trainerName: string;
+  trainerName1: string;
+  trainerName2: string;
 
 
   constructor(
@@ -42,21 +43,21 @@ export class PokemonListComponent implements OnInit {
 
   clearPokeLists(){
     this.pokeListTest1 = [
-      {index: "1", name: ""},
-      {index: "2", name: ""},
-      {index: "3", name: ""},
-      {index: "4", name: ""},
-      {index: "5", name: ""},
-      {index: "6", name: ""}
+      {index: 1, name: "", baseExperience:"", url:"" },
+      {index: 2, name: "", baseExperience:"", url:""  },
+      {index: 3, name: "", baseExperience:"", url:""  },
+      {index: 4, name: "", baseExperience:"", url:""  },
+      {index: 5, name: "", baseExperience:"", url:""  },
+      {index: 6, name: "", baseExperience:"", url:""  }
   ];
     this.pokeListTest2 = [
-      {index: "1", name: ""},
-      {index: "2", name: ""},
-      {index: "3", name: ""},
-      {index: "4", name: ""},
-      {index: "5", name: ""},
-      {index: "6", name: ""}
-  ];
+      {index: 1, name: "", baseExperience:"", url:"" },
+      {index: 2, name: "", baseExperience:"", url:""  },
+      {index: 3, name: "", baseExperience:"", url:""  },
+      {index: 4, name: "", baseExperience:"", url:""  },
+      {index: 5, name: "", baseExperience:"", url:""  },
+      {index: 6, name: "", baseExperience:"", url:""  }
+    ];
   }
 
   listPokemons(){
@@ -68,18 +69,23 @@ export class PokemonListComponent implements OnInit {
   }
 
 
-  addPokemonToTrade(pokemonName: string, dropDown: number){
-    var pokemon = new Pokemon();
+  async addPokemonToTrade(pokemonName: string, dropDown: number){
+    let pokemon: Pokemon;
     if(pokemonName){
-      pokemon =  this.searchPokemon(pokemonName);
+      pokemon = await this.searchPokemon(pokemonName);
+
       if(dropDown == 1 && this.pokeListIndex1 < 6){
-        this.pokeListTest1[this.pokeListIndex1].name = pokemonName;
+        this.pokeListTest1[this.pokeListIndex1].name = pokemon.name;
+        this.pokeListTest1[this.pokeListIndex1].baseExperience = pokemon.base_experience;
+        this.pokeListTest1[this.pokeListIndex1].url = pokemon.sprites.front_default;
+        console.log(pokemon.sprites.front_default);
         this.pokemonToTrade1.push(pokemon);
-        console.log(this.pokemonToTrade1);
         this.pokeListIndex1 +=1;
       }
       else if(dropDown == 2 && this.pokeListIndex2 < 6){
-        this.pokeListTest2[this.pokeListIndex2].name = pokemonName;
+        this.pokeListTest2[this.pokeListIndex2].name = pokemon.name;
+        this.pokeListTest2[this.pokeListIndex2].baseExperience = pokemon.base_experience;
+        this.pokeListTest2[this.pokeListIndex2].url = pokemon.sprites.front_default;
         this.pokemonToTrade2.push(pokemon);
         this.pokeListIndex2 +=1;
       }
@@ -92,21 +98,29 @@ export class PokemonListComponent implements OnInit {
     if(dropDown == 1){
       for (let i = index; i < 5; i++) {
         this.pokeListTest1[i].name = this.pokeListTest1[i+1].name;
+        this.pokeListTest1[i].baseExperience = this.pokeListTest1[i+1].baseExperience;
+        this.pokeListTest1[i].url = this.pokeListTest1[i+1].url;
       }
       this.pokeListTest1[5].name = "";
+      this.pokeListTest1[5].baseExperience = "";
+      this.pokeListTest1[5].url = ""; 
     }
     else if(dropDown == 2){
       for (let i = index; i < 5; i++) {
         this.pokeListTest2[i].name = this.pokeListTest2[i+1].name;
+        this.pokeListTest2[i].baseExperience = this.pokeListTest2[i+1].baseExperience;
+        this.pokeListTest2[i].url = this.pokeListTest2[i+1].url;
       }
       this.pokeListTest2[5].name = "";
+      this.pokeListTest2[5].baseExperience = "";
+      this.pokeListTest2[5].url = "";
     }
     
   }
 
-  removePokemonFromTrade(dropDown: number, pokemonName: string, index: number){
-    var pokemon = new Pokemon();
-    pokemon =  this.searchPokemon(pokemonName);
+  async removePokemonFromTrade(dropDown: number, pokemonName: string, index: number){
+    let pokemon: Pokemon;
+    pokemon = await this.searchPokemon(pokemonName);
     if(dropDown == 1){
       this.pokemonToTrade1.splice(this.pokemonToTrade1.indexOf(pokemon), 1);
       this.buildTestListWithoutElement(dropDown, index);
@@ -119,15 +133,10 @@ export class PokemonListComponent implements OnInit {
     }
   }
 
-  searchPokemon(nameOrId: any){
-    var pokemonLocal = new Pokemon();
+  async searchPokemon(nameOrId: any){
+    let pokemonLocal: Pokemon;
     
-    this.pokemonService.getPokemon(nameOrId).subscribe(
-      (data: any) => {
-        pokemonLocal.name = data.name;
-        pokemonLocal.experience = data.base_experience;
-      }
-    )
+    pokemonLocal = await this.pokemonService.getPokemon(nameOrId).toPromise();
     return pokemonLocal;
   }
 
@@ -136,13 +145,13 @@ export class PokemonListComponent implements OnInit {
     this.pokemonToTrade2.splice(0,this.pokemonToTrade2.length);
   }
 
-  saveTradeList(userName: string){
+  saveTradeList(userName1: string){
     var tradeList: Trade[] = [];
 
     if( this.pokemonToTrade1 && this.pokemonToTrade2){
       var tradeLocal1 = new Trade();
       tradeLocal1.pokemonList = this.pokemonToTrade1;
-      tradeLocal1.userName = userName;
+      tradeLocal1.userName = userName1;
       tradeList.push(tradeLocal1);
       var tradeLocal2 = new Trade();
       tradeLocal2.pokemonList = this.pokemonToTrade2;

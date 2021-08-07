@@ -13,7 +13,7 @@
     justify-content: space-between;
     width: 96%;
     max-width: 800px;
-    padding: 20px;
+    padding: 30px;
     flex-wrap: wrap;
 }
 
@@ -46,4 +46,31 @@
 
 .p-button-text{
     height: 1px;
+}
+.resultDescription, .pokemonListDescription, .tradeHistoryCaption, .p-float-label{
+    font-family: "PokemonGb";
+    font-size: 12px;
+}
+
+
+@font-face {
+    font-family: "PokemonGb";
+    src: local("PokemonGb"), url(../../../assets/fonts/PokemonGb-RAeo.ttf) format("truetype");
+    font-size: 8px;
+}
+.tradeListContainer{
+    word-wrap: break-word;
+    max-width: 310px;
+}
+
+.crop {
+    width: 30px;
+    height: 50px;
+}
+
+.crop img {
+    margin-top: -20px;
+    margin-bottom: -20px;
+    margin-right: -55px;
+    margin-left: -35px;
 }

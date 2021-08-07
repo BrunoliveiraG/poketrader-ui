@@ -1,6 +1,11 @@
-export class Pokemon {
-  
-
+export type Pokemon = {
     name: string;
-    experience: number;
+    base_experience: number;
+    sprites: Sprite;
+
+    
+}
+
+type Sprite = {
+    front_default: string;
 }
