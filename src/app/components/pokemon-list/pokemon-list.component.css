@@ -16,6 +16,9 @@
     padding: 30px;
     flex-wrap: wrap;
 }
+.tradeListContainer{
+    padding-bottom: 10px;
+}
 
 .pokemonListContainer{
     display: flex;
@@ -43,6 +46,7 @@
     max-width: 800px;
     word-wrap: break-word;
 }
+
 
 .p-button-text{
     height: 1px;

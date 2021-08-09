@@ -3,7 +3,7 @@
     <div class= "buildTradeContainer">
         <div class="pokemonListContainer">
             <span class="p-float-label">
-                <input id="float-input" type="text" pInputText [(ngModel)]="trainerName1"> 
+                <input id="float-input" type="text" pInputText [(ngModel)]="trainerName1" maxlength="20"> 
                 <label for="float-input">Trainer 1</label>
             </span>
             <div class="pokemonListHeaderContainer">
@@ -64,7 +64,7 @@
     
         <div class="pokemonListContainer">
             <span class="p-float-label">
-                <input id="float-input" type="text" pInputText [(ngModel)]="trainerName2"> 
+                <input id="float-input" type="text" pInputText [(ngModel)]="trainerName2" maxlength="20"> 
                 <label for="float-input">Trainer 2</label>
             </span>
             <div class="pokemonListHeaderContainer">
@@ -158,7 +158,13 @@
                 </tr>
             </ng-template>
         </p-table>
+        
     </div>
+    <button  pButton type="button" 
+                icon="pi pi-trash" 
+                class="p-button-raised p-button-rounded p-button-text" 
+                (click)="clearAllStoredTrades()">
+        </button>
     
 </div>
 <p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>

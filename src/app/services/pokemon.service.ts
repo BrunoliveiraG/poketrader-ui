@@ -34,5 +34,8 @@ export class PokemonService {
     return this.httpClient.get<Result[]>(`${this.baseLocalUrl}`);
   }
 
+  removeAllStoredTrades(){
+    return this.httpClient.delete(this.baseLocalUrl);
+  }
   
 }

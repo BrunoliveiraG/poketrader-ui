@@ -20,7 +20,10 @@ export class PokemonListComponent implements OnInit {
   selectedPokemonName2: string;
   pokemonTradeList1: Pokemon[] = [];
   pokemonTradeList2: Pokemon[] = [];
+
+  // trades result list
   resultList: Result[] = [];
+
   trainerName1: string;
   trainerName2: string;
 
@@ -33,9 +36,11 @@ export class PokemonListComponent implements OnInit {
   ngOnInit(): void {
     this.listPokemonNames();
     this.listTrades();
+    this.clearAllStoredTrades();
 
   }
 
+  // list all pokemon names through the external api to fill the dropdown
   listPokemonNames(){
     this.pokemonService.getPokemonList().subscribe(
       (data: any) => {
@@ -85,6 +90,7 @@ export class PokemonListComponent implements OnInit {
     this.updatePokemonIndex(dropDown);
   }
 
+  // updates lists indexes after a pokemon is removed 
   updatePokemonIndex(dropDown: number){
     if(dropDown == 1){
       for(let i = 0; i < this.pokemonTradeList1.length; i++){
@@ -135,6 +141,7 @@ export class PokemonListComponent implements OnInit {
     return true;  
   }
 
+  // builds trade object for backend format
   buildTradeToBackend(userName1: string, userName2: string){
     var tradeList: Trade[] = [];
     var tradeLocal1 = new Trade();
@@ -148,7 +155,7 @@ export class PokemonListComponent implements OnInit {
     return tradeList;
   }
 
-
+  // list trade results
   async listTrades(){
     this.resultList = await this.pokemonService.getAllTradeLists().toPromise();   
   }
@@ -172,6 +179,11 @@ export class PokemonListComponent implements OnInit {
   clearTradeList(){
     this.pokemonTradeList1.splice(0,this.pokemonTradeList1.length);
     this.pokemonTradeList2.splice(0,this.pokemonTradeList2.length);
+  }
+
+  async clearAllStoredTrades(){
+    await this.pokemonService.removeAllStoredTrades().toPromise();
+    await this.listTrades();
   }
 
 }
