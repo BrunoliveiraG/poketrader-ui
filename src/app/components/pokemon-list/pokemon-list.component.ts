@@ -36,8 +36,6 @@ export class PokemonListComponent implements OnInit {
   ngOnInit(): void {
     this.listPokemonNames();
     this.listTrades();
-    this.clearAllStoredTrades();
-
   }
 
   // list all pokemon names through the external api to fill the dropdown
