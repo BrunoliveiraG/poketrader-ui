@@ -1,4 +1,5 @@
 export type Pokemon = {
+    indexNumber: number;
     name: string;
     base_experience: number;
     sprites: Sprite;

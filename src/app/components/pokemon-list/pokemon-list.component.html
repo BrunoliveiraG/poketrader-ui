@@ -1,10 +1,14 @@
-<!-- <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"> -->
+
 <div class = "pokemonListComponentContainer">
     <div class= "buildTradeContainer">
         <div class="pokemonListContainer">
+            <span class="p-float-label">
+                <input id="float-input" type="text" pInputText [(ngModel)]="trainerName1"> 
+                <label for="float-input">Trainer 1</label>
+            </span>
             <div class="pokemonListHeaderContainer">
                 <p-dropdown
-                    [options]="pokemons" 
+                    [options]="pokemonNames" 
                     [(ngModel)]="selectedPokemonName1" 
                     optionLabel="name" 
                     optionValue="name" 
@@ -18,14 +22,14 @@
                 <button class="addPokemonToListButton" pButton type="button" 
                     icon="pi pi-plus" 
                     class="p-button-raised p-button-rounded p-button-text" 
-                    (click)="addPokemonToTrade(selectedPokemonName1, 1)"
+                    (click)="addPokemonToTradeList(selectedPokemonName1, 1)"
                     style="left:5px;">
                 </button>
             </div>
             
     
             <div class="tradeListContainer">
-                <p-table class="pokemonTable" [value]="pokeListTest1" 
+                <p-table class="pokemonTable" [value]="pokemonTradeList1" 
                 [autoLayout]="true" styleClass="p-datatable-responsive-demo">
                     <ng-template pTemplate="header">
                         <tr class="pokemonListDescription">
@@ -38,30 +42,34 @@
                     <ng-template pTemplate="body" let-pokemon>
                         <tr>
                             <td>{{ pokemon.name }}</td>
-                            <td>{{ pokemon.baseExperience }}</td>
+                            <td>{{ pokemon.base_experience }}</td>
                             <td>
                                 <div class="crop">
-                                    <img [src]="pokemon.url">
+                                    <img [src]="pokemon.sprites.front_default">
                                 </div>
                             </td>
                             <td>
                                 <div *ngIf="pokemon.name"><button pButton 
                                     type="button" icon="pi pi-times" class="p-button-text" 
-                                    (click)="removePokemonFromTrade(1, pokemon.name, pokemon.index)"></button>
+                                    (click)="removePokemonFromTrade(1, pokemon.indexNumber)"></button>
                                 </div>
                             </td>
                             
                         </tr>
                     </ng-template>
-                </p-table>
+                </p-table>       
             </div>
         </div>
     
     
         <div class="pokemonListContainer">
+            <span class="p-float-label">
+                <input id="float-input" type="text" pInputText [(ngModel)]="trainerName2"> 
+                <label for="float-input">Trainer 2</label>
+            </span>
             <div class="pokemonListHeaderContainer">
                 <p-dropdown
-                    [options]="pokemons" 
+                    [options]="pokemonNames" 
                     [(ngModel)]="selectedPokemonName2" 
                     optionLabel="name" 
                     optionValue="name" 
@@ -75,13 +83,13 @@
                 <button class="addPokemonToListButton" pButton type="button" 
                     icon="pi pi-plus" 
                     class="p-button-raised p-button-rounded p-button-text" 
-                    (click)="addPokemonToTrade(selectedPokemonName2, 2)"
+                    (click)="addPokemonToTradeList(selectedPokemonName2, 2)"
                     style="left:5px;">
                 </button>
             </div>
             
             <div class="tradeListContainer">
-                <p-table class="pokemonTable" [value]="pokeListTest2" [autoLayout]="true">
+                <p-table class="pokemonTable" [value]="pokemonTradeList2" [autoLayout]="true">
                     <ng-template pTemplate="header">
                         <tr class="pokemonListDescription">
                             <th>Name</th>
@@ -93,19 +101,18 @@
                     <ng-template pTemplate="body" let-pokemon>
                         <tr>
                             <td>{{ pokemon.name }}</td>
-                            <td>{{ pokemon.baseExperience }}</td>
+                            <td>{{ pokemon.base_experience }}</td>
                             <td>
                                 <div class="crop">
-                                    <img [src]="pokemon.url">
+                                    <img [src]="pokemon.sprites.front_default">
                                 </div>
                             </td>
                             <td>
-                                <div *ngIf="pokemon.name"><button pButton type="button" 
-                                    icon="pi pi-times" class="p-button-text" 
-                                    (click)="removePokemonFromTrade(2, pokemon.name, pokemon.index)"></button>
+                                <div *ngIf="pokemon.name"><button pButton 
+                                    type="button" icon="pi pi-times" class="p-button-text" 
+                                    (click)="removePokemonFromTrade(2, pokemon.indexNumber)"></button>
                                 </div>
                             </td>
-                            
                             
                         </tr>
                     </ng-template>
@@ -114,18 +121,16 @@
         </div>
     </div>
     
-    <div class= "saveTradeListButtonContainer">
-        <span class="p-float-label">
-            <input id="float-input" type="text" pInputText [(ngModel)]="trainerName1"> 
-            <label for="float-input">Trainer</label>
+    <div class= "actionButtonsContainer">
+        <span class="p-buttonset">
+            <button pButton type="button" label="Check Trade" 
+            icon="pi pi-check" (click)="saveTradeList(trainerName1, trainerName2)"  
+            class="p-button-raised p-button-rounded p-button-outlined"></button>
+            <button pButton type="button" label="Clear Lists" 
+            icon="pi pi-trash" (click)="clearTradeList()"  
+            class="p-button-raised p-button-rounded p-button-outlined"></button>
         </span>
-        <button class="saveTradeListButton" pButton type="button" 
-            icon="pi pi-save" 
-            class="p-button-raised p-button-rounded p-button-text" 
-            (click)="saveTradeList(trainerName1)"
-            style="left:5px;">
-        </button>
-        <p-toast></p-toast>
+        
     </div>  
     
     <div class="tradeResultsContainer">
@@ -147,15 +152,16 @@
             </ng-template>
             <ng-template pTemplate="body" let-result>
                 <tr >
-                    <td >{{ result.userName }}</td>
-                    <td>{{ result.firstList }} traded with {{ result.secondList }}</td>
+                    <td >{{ result.userNameOne }} traded with {{ result.userNameTwo }}</td>
+                    <td>{{ result.firstList }} traded for {{ result.secondList }}</td>
                     <td>{{ result.expDifference }} experience difference, that's a {{ result.verdict }}</td>
                 </tr>
             </ng-template>
         </p-table>
     </div>
+    
 </div>
-
+<p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
 
 
 

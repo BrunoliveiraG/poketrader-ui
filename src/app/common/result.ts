@@ -3,7 +3,8 @@ export class Result {
     expDifference: number;
     firstList: string;
     secondList: string;
-    userName: string;
+    userNameOne: string;
+    userNameTwo: string;
     verdict: string;
 }
 

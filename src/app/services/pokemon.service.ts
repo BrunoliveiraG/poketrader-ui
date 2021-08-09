@@ -5,6 +5,7 @@ import { Pokemon } from '../common/pokemon';
 import { map } from 'rxjs/operators';
 import { Trade } from '../common/trade';
 import { environment } from 'src/environments/environment';
+import { Result } from '../common/result';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class PokemonService {
   }
 
   getAllTradeLists(){
-    return this.httpClient.get<Trade[]>(`${this.baseLocalUrl}`);
+    return this.httpClient.get<Result[]>(`${this.baseLocalUrl}`);
   }
 
   
